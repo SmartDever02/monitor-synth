@@ -13,8 +13,8 @@ export default function Noti() {
 My avg prompt score: ${window?.my_avg_score?.toFixed(3)}(#${window?.my_avg_score_grade})
 My top performance: ${window?.my_top_miner_performance?.toFixed(3)} => ${window?.my_top_miner_uid}(#${window?.my_top_miner_grade})
 My avg performance: ${window?.my_avg_performance?.toFixed(3)}(${window?.my_avg_performance_grade})
-Miners not working: ${(window as any).bad_miners.length || "Everything is fine"}
-Reward: ${Number((window as any).total_daily).toFixed(1)} alpha t`,
+Miners not working: ${(window as any)?.bad_miners?.length || "Everything is fine"}
+Reward: ${Number((window as any)?.total_daily).toFixed(1)} alpha t`,
             icon: "https://example.com/icon.png",
             requireInteraction: true,
           });
