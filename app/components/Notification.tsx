@@ -15,7 +15,8 @@ My top performance: ${window?.my_top_miner_performance?.toFixed(3)} => ${window?
 My avg performance: ${window?.my_avg_performance?.toFixed(3)}(${window?.my_avg_performance_grade})
 Miners not working: ${(window as any).bad_miners.length || "Everything is fine"}
 Reward: ${Number((window as any).total_daily).toFixed(1)} alpha t`,
-            icon: "https://example.com/icon.png"
+            icon: "https://example.com/icon.png",
+            requireInteraction: true,
           });
         }
       });
@@ -23,6 +24,7 @@ Reward: ${Number((window as any).total_daily).toFixed(1)} alpha t`,
   }
 
   const startNotificationHandler = () => {
+    process();
     setInterval(process, 4_800_000);
   }
   
