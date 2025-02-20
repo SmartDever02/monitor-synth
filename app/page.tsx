@@ -3,6 +3,7 @@
 import Reward from "./components/Reward";
 import Score from "./components/Score";
 import Validate from "./components/Validate";
+import Notification from "./components/Notification";
 
 export default async function Home() {
   return (
@@ -12,6 +13,8 @@ export default async function Home() {
         <Score />
         <Reward />
       </div>
+
+      <Notification />
     </div >
   );
 }

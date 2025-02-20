@@ -7,14 +7,30 @@ type Props = {
 }
 
 const ValidateItem = ({ miner }: Props) => {
-    const { data, error, isLoading } = useSWR(`https://synth.mode.network/validation/miner?uid=${miner}`, fetcher)
+    const { data, error, isLoading } = useSWR(`https://synth.mode.network/validation/miner?uid=${miner}`, fetcher, {
+        revalidateOnFocus: false,
+        refreshInterval: 2000
+    })
+    
     if (isLoading) return <div>Loading...</div>
     if (error) return <div>Error loading data</div>
-    if (data) return <div className='flex flex-row gap-2 items-center text-sm'>
-        <div className='rounded-full w-14 h-8 flex items-center justify-center blur-sm hover:blur-0 transition-all duration-300 bg-indigo-500 cursor-pointer'>{miner}</div>
-        <div>{data.validated}</div>
-        <div>{data.validated ? 'Nice' : data.reason}</div>
-    </div>
+    if (data) {
+        if (!data.validated) {
+            if (window) {
+                const arr = Array.isArray((window as any).bad_miners) ? (window as any).bad_miners : [];
+                arr.push(miner);
+                // @ts-ignore
+                const uniqueArray = arr.filter((value, index, self) => self.indexOf(value) === index);
+                (window as any).bad_miners = [...uniqueArray]
+            }
+        }
+
+        return <div className='flex flex-row gap-2 items-center text-sm'>
+            <div className='rounded-full w-14 h-8 flex items-center justify-center blur-sm hover:blur-0 transition-all duration-300 bg-indigo-500 cursor-pointer'>{miner}</div>
+            <div>{data.validated}</div>
+            <div>{data.validated ? 'Nice' : data.reason}</div>
+        </div>
+    }
 }
 
 export default ValidateItem

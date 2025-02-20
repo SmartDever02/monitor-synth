@@ -7,7 +7,7 @@ const Reward = () => {
     const [miners] = useState(process.env.NEXT_PUBLIC_MINERS?.split(",").map((miner: string) => parseInt(miner.trim(), 10)).filter((miner: number) => !isNaN(miner)))
     const { data, error, isLoading } = useSWR('/api/getRewards', fetcher, {
         revalidateOnFocus: false,
-        refreshInterval: 5000
+        refreshInterval: 2000
     })
     if (isLoading) return <div>Loading...</div>
     if (error) return <div>Error loading data</div>
@@ -31,6 +31,22 @@ const Reward = () => {
         }));
         const total_stake = filteredData.reduce((acc: number, item: any) => acc + item.stake, 0);
         const total_daily = filteredData.reduce((acc: number, item: any) => acc + item.taoPerDay, 0);
+        if(window) {
+            (window as any).total_daily = total_daily;
+            (window as any).my_top_miner_performance = filteredData[0].minerPerformance;
+            (window as any).my_top_miner_uid = filteredData[0].uid;
+            (window as any).my_top_miner_grade = filteredData[0].grade;
+
+            let grade = 0, performance = 0;
+            for (let i = 0; i < filteredData.length; i++) {
+                grade += filteredData[i].grade;
+                performance += filteredData[i].minerPerformance;
+            }
+
+            (window as any).my_avg_performance = performance / filteredData.length;
+            (window as any).my_avg_performance_grade = grade / filteredData.length;
+        }
+
         return (
             <div className='w-full p-10 border border-white rounded-2xl'>
                 <div className='flex flex-col gap-5'>
@@ -69,7 +85,6 @@ const Reward = () => {
             </div>
         )
     }
-
 }
 
 export default Reward
