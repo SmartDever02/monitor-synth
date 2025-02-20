@@ -11,7 +11,7 @@ const ValidateItem = ({ miner }: Props) => {
         revalidateOnFocus: false,
         refreshInterval: 2000
     })
-    
+
     if (isLoading) return <div>Loading...</div>
     if (error) return <div>Error loading data</div>
     if (data) {
@@ -19,7 +19,7 @@ const ValidateItem = ({ miner }: Props) => {
             if (window) {
                 const arr = Array.isArray((window as any).bad_miners) ? (window as any).bad_miners : [];
                 arr.push(miner);
-                // @ts-ignore
+                // @ts-ignore filter method is battle tested
                 const uniqueArray = arr.filter((value, index, self) => self.indexOf(value) === index);
                 (window as any).bad_miners = [...uniqueArray]
             }

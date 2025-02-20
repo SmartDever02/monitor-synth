@@ -5,7 +5,7 @@ export default function Noti() {
       // Request permission from the user
       Notification.requestPermission().then(permission => {
         if (permission === "granted") {
-          let window = (global.window as any)
+          const window = (global.window as any)
           // Create a notification
           new Notification("Epoch Report", {
             body: `
