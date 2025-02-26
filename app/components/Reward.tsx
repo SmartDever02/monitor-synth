@@ -68,10 +68,10 @@ const Reward = () => {
                                     <tr key={item.UID}>
                                         <td className='text-center transition-all duration-300 cursor-pointer'>{item.UID}</td>
                                         <td className='text-center'>{item.Grade}</td>
-                                        <td className='text-center'>{item.Stake}</td>
-                                        <td className='text-center'>{item.Incentive}</td>
-                                        <td className='text-center'>{item.Performance}</td>
-                                        <td className='text-start'>{item.daily}</td>
+                                        <td className='text-center'>{Number(item.Stake).toFixed(3)}</td>
+                                        <td className='text-center'>{Number(item.Incentive).toFixed(8)}</td>
+                                        <td className='text-center'>{Number(item.Performance).toFixed(2)}</td>
+                                        <td className='text-center'>{Number(item.daily).toFixed(3)}</td>
                                     </tr>
                                 ))
                             }

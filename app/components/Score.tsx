@@ -1,5 +1,6 @@
 "use client"
 import { fetcher } from '@/utils/fetcher'
+import Link from 'next/link'
 import React, { useState } from 'react'
 import useSWR from 'swr'
 
@@ -45,7 +46,8 @@ const Score = () => {
         return (
             <div className='w-fit p-10 border border-white rounded-2xl'>
                 <div className='flex flex-col gap-5'>
-                    <div className='text-2xl font-bold text-center'>Score</div>
+                    <div className='text-2xl font-bold text-center'>
+                        <Link className='underline' href={`/score`}>Score</Link></div>
                     <table className='w-full table-auto'>
                         <thead>
                             <tr>
@@ -55,16 +57,21 @@ const Score = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td className='text-center'>{top.UID}</td>
-                                <td className='text-center px-10'>{top.Score}</td>
+                            <tr className='text-red-500'>
+                                <td className='text-center'><Link className='underline' href={`/miner/${top.UID}`}>
+                                    {top.UID}
+                                </Link></td>
+                                <td className='text-center px-10'>{Number(top.Score).toFixed(8)}</td>
                                 <td className='text-center'>{top.Grade}</td>
                             </tr>
                             {
                                 filteredData.map((item: any) =>
                                     <tr>
-                                        <td className='text-center transition-all duration-300 cursor-pointer'>{item.miner_uid}</td>
-                                        <td className='text-center'>{item.prompt_score}</td>
+                                        <td className='text-center transition-all duration-300 cursor-pointer'>
+                                            <Link className='underline' href={`/miner/${item.miner_uid}`}>
+                                                {item.miner_uid}
+                                            </Link></td>
+                                        <td className='text-center'>{Number(item.prompt_score).toFixed(8)}</td>
                                         <td className='text-center'>{item.grade}</td>
                                     </tr>
                                 )
