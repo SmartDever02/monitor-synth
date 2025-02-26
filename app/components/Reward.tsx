@@ -66,7 +66,7 @@ const Reward = () => {
                             {
                                 Result.map((item: any) => (
                                     <tr key={item.UID}>
-                                        <td className='text-center blur-sm hover:blur-0 transition-all duration-300 cursor-pointer'>{item.UID}</td>
+                                        <td className='text-center transition-all duration-300 cursor-pointer'>{item.UID}</td>
                                         <td className='text-center'>{item.Grade}</td>
                                         <td className='text-center'>{item.Stake}</td>
                                         <td className='text-center'>{item.Incentive}</td>

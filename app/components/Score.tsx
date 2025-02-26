@@ -63,7 +63,7 @@ const Score = () => {
                             {
                                 filteredData.map((item: any) =>
                                     <tr>
-                                        <td className='text-center blur-sm hover:blur-0 transition-all duration-300 cursor-pointer'>{item.miner_uid}</td>
+                                        <td className='text-center transition-all duration-300 cursor-pointer'>{item.miner_uid}</td>
                                         <td className='text-center'>{item.prompt_score}</td>
                                         <td className='text-center'>{item.grade}</td>
                                     </tr>

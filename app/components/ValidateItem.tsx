@@ -26,9 +26,9 @@ const ValidateItem = ({ miner }: Props) => {
         }
 
         return <div className='flex flex-row gap-2 items-center text-sm'>
-            <div className='rounded-full w-14 h-8 flex items-center justify-center blur-sm hover:blur-0 transition-all duration-300 bg-indigo-500 cursor-pointer'>{miner}</div>
+            <div className='rounded-full w-14 h-8 flex items-center justify-center transition-all duration-300 bg-indigo-500 cursor-pointer'>{miner}</div>
             <div>{data.validated}</div>
-            <div>{data.validated ? 'Nice' : data.reason}</div>
+            <div className='w-60'>{data.validated ? 'Nice' : data.reason}</div>
         </div>
     }
 }
