@@ -8,7 +8,7 @@ export interface MinerScore {
 }
 
 export default async function MultipleMinerScore({ uids }: { uids: Array<number | string> }) {
-  const currentDate = new Date().toISOString().split('T')[0];
+  const currentDate = new Date(new Date().setDate(new Date().getDate() + 1)).toISOString().split('T')[0];
   const beforeDate = new Date(new Date().setDate(new Date().getDate() - 2)).toISOString().split('T')[0];
 
   const fetchScores = async (uid: number | string) => {
