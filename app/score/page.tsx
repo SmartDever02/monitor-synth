@@ -13,7 +13,9 @@ export default async function RecentScore() {
   const MY_UIDS = process.env.NEXT_PUBLIC_MINERS?.split(",") || []
 
   // get top 10 miners from the last prompt_score
-  const res = await fetch(`https://synth.mode.network/validation/scores/latest`);
+  const res = await fetch(`https://synth.mode.network/validation/scores/latest`, {
+    cache: "no-cache"
+  });
   const data: MinerScore[] = await res.json();
 
   const RECENT_MINER_UIDS = data.sort((a, b) => b.prompt_score - a.prompt_score).slice(0, 5).map((item) => item.miner_uid);
