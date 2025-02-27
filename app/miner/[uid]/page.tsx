@@ -3,7 +3,7 @@ import Link from "next/link";
 const PromptScoreChart = dynamic(() => import('./chart'), { ssr: false })
 
 export default async function MinerPage({ params }: { params: { uid: string } }) {
-  const currentDate = new Date(new Date().setDate(new Date().getDate() + 1)).toISOString().split('T')[0];
+  const currentDate = new Date(new Date().setDate(new Date().getDate() + 2)).toISOString().split('T')[0];
   const beforeDate = new Date(new Date().setDate(new Date().getDate() - 2)).toISOString().split('T')[0];
 
   const res = await fetch(`https://synth.mode.network/validation/scores/historical?from=${beforeDate}&to=${currentDate}&miner_uid=${params.uid}`)
