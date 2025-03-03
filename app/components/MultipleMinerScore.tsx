@@ -9,7 +9,7 @@ export interface MinerScore {
 
 export default async function MultipleMinerScore({ uids }: { uids: Array<number | string> }) {
   const currentDate = new Date(new Date().setDate(new Date().getDate() + 1)).toISOString().split('T')[0];
-  const beforeDate = new Date(new Date().setDate(new Date().getDate() - 2)).toISOString().split('T')[0];
+  const beforeDate = new Date(new Date().setDate(new Date().getDate() - 4)).toISOString().split('T')[0];
 
   const fetchScores = async (uid: number | string) => {
     const res = await fetch(`https://synth.mode.network/validation/scores/historical?from=${beforeDate}&to=${currentDate}&miner_uid=${uid}`, {

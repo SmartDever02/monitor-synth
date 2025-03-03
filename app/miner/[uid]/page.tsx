@@ -4,7 +4,7 @@ const PromptScoreChart = dynamic(() => import('./chart'), { ssr: false })
 
 export default async function MinerPage({ params }: { params: { uid: string } }) {
   const currentDate = new Date(new Date().setDate(new Date().getDate() + 1)).toISOString().split('T')[0];
-  const beforeDate = new Date(new Date().setDate(new Date().getDate() - 2)).toISOString().split('T')[0];
+  const beforeDate = new Date(new Date().setDate(new Date().getDate() - 4)).toISOString().split('T')[0];
 
   console.log("currentDate: ", currentDate)
 
