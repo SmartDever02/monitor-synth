@@ -1,10 +1,12 @@
 import dynamic from "next/dynamic";
 import Link from "next/link";
+import { format, addDays, subDays } from 'date-fns';
+
 const PromptScoreChart = dynamic(() => import('./chart'), { ssr: false })
 
 export default async function MinerPage({ params }: { params: { uid: string } }) {
-  const currentDate = new Date(new Date().setDate(new Date().getDate() + 1)).toISOString().split('T')[0];
-  const beforeDate = new Date(new Date().setDate(new Date().getDate() - 4)).toISOString().split('T')[0];
+  const currentDate = format(addDays(new Date(), 1), 'yyyy-MM-dd');
+  const beforeDate = format(subDays(new Date(), 2), 'yyyy-MM-dd');
 
   console.log("currentDate: ", currentDate)
 
